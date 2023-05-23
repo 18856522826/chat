@@ -1,0 +1,23 @@
+server:
+  port: 9098
+openai:
+  # 请先设置您的SECRET KEY，查看地址：https://console.openai.com.cn/secret
+  secret_key: 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
+#如果在国内访问，使用这个代理
+proxy:
+  ip:
+  port:
+app:
+  log:
+    level: info
+spring:
+  datasource:
+    url: jdbc:mysql://101.132.33.35:3306/earlyrise_chat?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: Xz19981202%
+    druid:
+      initialSize: 10
+      maxActive: 50
+      maxWait: 6000
+      minIdle: 10
+      validationQuery: SELECT 1 FROM DUAL

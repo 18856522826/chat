@@ -1,0 +1,8 @@
+logging:
+  level:
+    root: info
+openai:
+  secret_key: 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
+proxy:
+  ip:
+  port:

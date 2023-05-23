@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cyl.ctrbt.mapper.ChatUserInfoDao">
+  <resultMap id="BaseResultMap" type="com.cyl.ctrbt.mapper.ChatUserInfo">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="BIZ_KEY" jdbcType="VARCHAR" property="bizKey" />
+    <result column="OPEN_ID" jdbcType="VARCHAR" property="openId" />
+    <result column="SESSION_KEY" jdbcType="VARCHAR" property="sessionKey" />
+    <result column="CHAT_SUM" jdbcType="BIGINT" property="chatSum" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, BIZ_KEY, OPEN_ID, SESSION_KEY, CHAT_SUM
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from chat_user_info
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from chat_user_info
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert"  parameterType="com.cyl.ctrbt.mapper.ChatUserInfo">
+    insert into chat_user_info (<include refid="Base_Column_List" />)
+    values (#{id,jdbcType=VARCHAR},#{bizKey,jdbcType=VARCHAR}, #{openId,jdbcType=VARCHAR}, #{sessionKey,jdbcType=VARCHAR},
+      #{chatSum,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.cyl.ctrbt.mapper.ChatUserInfo" useGeneratedKeys="true">
+    insert into chat_user_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bizKey != null">
+        BIZ_KEY,
+      </if>
+      <if test="openId != null">
+        OPEN_ID,
+      </if>
+      <if test="sessionKey != null">
+        SESSION_KEY,
+      </if>
+      <if test="chatSum != null">
+        CHAT_SUM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bizKey != null">
+        #{bizKey,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null">
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="sessionKey != null">
+        #{sessionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="chatSum != null">
+        #{chatSum,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cyl.ctrbt.mapper.ChatUserInfo">
+    update chat_user_info
+    <set>
+      <if test="bizKey != null">
+        BIZ_KEY = #{bizKey,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null">
+        OPEN_ID = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="sessionKey != null">
+        SESSION_KEY = #{sessionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="chatSum != null">
+        CHAT_SUM = #{chatSum,jdbcType=BIGINT},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cyl.ctrbt.mapper.ChatUserInfo">
+    update chat_user_info
+    set BIZ_KEY = #{bizKey,jdbcType=VARCHAR},
+      OPEN_ID = #{openId,jdbcType=VARCHAR},
+      SESSION_KEY = #{sessionKey,jdbcType=VARCHAR},
+      CHAT_SUM = #{chatSum,jdbcType=BIGINT}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+    <select id="selectByBizKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from chat_user_info
+        where BIZ_KEY = #{bizKey,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByOpenId" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from chat_user_info
+        where OPEN_ID = #{openId,jdbcType=VARCHAR}
+  </select>
+</mapper>
