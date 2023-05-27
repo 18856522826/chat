@@ -14,8 +14,8 @@ import retrofit2.http.POST;
  */
 public interface Api {
 
-    String DEFAULT_API_HOST = "http://45.32.78.170/api/";
-//    String DEFAULT_API_HOST="https://open.aiproxy.xyz/";
+//    String DEFAULT_API_HOST = "http://45.32.78.170/api/";
+    String DEFAULT_API_HOST="https://open.aiproxy.xyz/";
 
     /**
      * chat
